@@ -11,6 +11,14 @@ namespace StudentsManager.Models
         private string _code;
         private string _class;
 
+        public Student()
+        {
+            _name = "UNKNOWN";
+            _surname = "UNKNOWN";
+            _code = "XX-00000";
+            _class = "0°XX";
+        }
+
         public Student(
             string name, 
             string surname, 
@@ -22,6 +30,8 @@ namespace StudentsManager.Models
             Code = code;
             Class = @class;
         }
+
+        public string FullName => $"{Name} {Surname}";
 
         public string Name
         {

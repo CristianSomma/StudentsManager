@@ -323,6 +323,18 @@ namespace StudentsManager
             return (FindIndex(item) != -1);
         }
 
+        public List<T> ToList()
+        {
+            var list = new List<T>();
+
+            foreach(T item in this)
+            {
+                list.Add(item);
+            }
+
+            return list;
+        }
+
         public T? Find(Predicate<T> predicate)
         {
             throw new NotImplementedException();

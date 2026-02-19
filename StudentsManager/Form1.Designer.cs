@@ -36,11 +36,13 @@
             specificStudentToolStripMenuItem = new ToolStripMenuItem();
             allStudentsToolStripMenuItem = new ToolStripMenuItem();
             pnl_studentsFields = new Panel();
+            lbl_studentPicker = new Label();
+            cmb_studentPicker = new ComboBox();
             btn_func = new Button();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
+            lbl_studentClass = new Label();
+            lbl_studentCode = new Label();
+            lbl_studentSurname = new Label();
+            lbl_studentName = new Label();
             txt_studentSurname = new TextBox();
             txt_studentName = new TextBox();
             msk_studentClass = new MaskedTextBox();
@@ -78,12 +80,14 @@
             modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
             modifyToolStripMenuItem.Size = new Size(90, 28);
             modifyToolStripMenuItem.Text = "Modify";
+            modifyToolStripMenuItem.Click += modifyToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             deleteToolStripMenuItem.Size = new Size(90, 28);
             deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // viewToolStripMenuItem
             // 
@@ -97,20 +101,24 @@
             specificStudentToolStripMenuItem.Name = "specificStudentToolStripMenuItem";
             specificStudentToolStripMenuItem.Size = new Size(281, 28);
             specificStudentToolStripMenuItem.Text = "Specific student";
+            specificStudentToolStripMenuItem.Click += specificStudentToolStripMenuItem_Click;
             // 
             // allStudentsToolStripMenuItem
             // 
             allStudentsToolStripMenuItem.Name = "allStudentsToolStripMenuItem";
             allStudentsToolStripMenuItem.Size = new Size(281, 28);
             allStudentsToolStripMenuItem.Text = "All students";
+            allStudentsToolStripMenuItem.Click += allStudentsToolStripMenuItem_Click;
             // 
             // pnl_studentsFields
             // 
+            pnl_studentsFields.Controls.Add(lbl_studentPicker);
+            pnl_studentsFields.Controls.Add(cmb_studentPicker);
             pnl_studentsFields.Controls.Add(btn_func);
-            pnl_studentsFields.Controls.Add(label4);
-            pnl_studentsFields.Controls.Add(label3);
-            pnl_studentsFields.Controls.Add(label2);
-            pnl_studentsFields.Controls.Add(label1);
+            pnl_studentsFields.Controls.Add(lbl_studentClass);
+            pnl_studentsFields.Controls.Add(lbl_studentCode);
+            pnl_studentsFields.Controls.Add(lbl_studentSurname);
+            pnl_studentsFields.Controls.Add(lbl_studentName);
             pnl_studentsFields.Controls.Add(txt_studentSurname);
             pnl_studentsFields.Controls.Add(txt_studentName);
             pnl_studentsFields.Controls.Add(msk_studentClass);
@@ -120,9 +128,30 @@
             pnl_studentsFields.Size = new Size(442, 564);
             pnl_studentsFields.TabIndex = 1;
             // 
+            // lbl_studentPicker
+            // 
+            lbl_studentPicker.AutoSize = true;
+            lbl_studentPicker.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_studentPicker.Location = new Point(104, 26);
+            lbl_studentPicker.Name = "lbl_studentPicker";
+            lbl_studentPicker.Size = new Size(160, 22);
+            lbl_studentPicker.TabIndex = 10;
+            lbl_studentPicker.Text = "Choose student:";
+            lbl_studentPicker.Visible = false;
+            // 
+            // cmb_studentPicker
+            // 
+            cmb_studentPicker.FormattingEnabled = true;
+            cmb_studentPicker.Location = new Point(104, 51);
+            cmb_studentPicker.Name = "cmb_studentPicker";
+            cmb_studentPicker.Size = new Size(250, 36);
+            cmb_studentPicker.TabIndex = 9;
+            cmb_studentPicker.Visible = false;
+            cmb_studentPicker.SelectedValueChanged += cmb_studentPicker_SelectedValueChanged;
+            // 
             // btn_func
             // 
-            btn_func.Location = new Point(104, 438);
+            btn_func.Location = new Point(104, 478);
             btn_func.Name = "btn_func";
             btn_func.Size = new Size(250, 61);
             btn_func.TabIndex = 8;
@@ -130,56 +159,56 @@
             btn_func.UseVisualStyleBackColor = true;
             btn_func.Click += btn_func_Click;
             // 
-            // label4
+            // lbl_studentClass
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(104, 317);
-            label4.Name = "label4";
-            label4.Size = new Size(70, 22);
-            label4.TabIndex = 7;
-            label4.Text = "Class:";
+            lbl_studentClass.AutoSize = true;
+            lbl_studentClass.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_studentClass.Location = new Point(104, 391);
+            lbl_studentClass.Name = "lbl_studentClass";
+            lbl_studentClass.Size = new Size(70, 22);
+            lbl_studentClass.TabIndex = 7;
+            lbl_studentClass.Text = "Class:";
             // 
-            // label3
+            // lbl_studentCode
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(104, 222);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 22);
-            label3.TabIndex = 6;
-            label3.Text = "Code:";
+            lbl_studentCode.AutoSize = true;
+            lbl_studentCode.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_studentCode.Location = new Point(104, 296);
+            lbl_studentCode.Name = "lbl_studentCode";
+            lbl_studentCode.Size = new Size(60, 22);
+            lbl_studentCode.TabIndex = 6;
+            lbl_studentCode.Text = "Code:";
             // 
-            // label2
+            // lbl_studentSurname
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(104, 131);
-            label2.Name = "label2";
-            label2.Size = new Size(90, 22);
-            label2.TabIndex = 5;
-            label2.Text = "Surname:";
+            lbl_studentSurname.AutoSize = true;
+            lbl_studentSurname.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_studentSurname.Location = new Point(104, 205);
+            lbl_studentSurname.Name = "lbl_studentSurname";
+            lbl_studentSurname.Size = new Size(90, 22);
+            lbl_studentSurname.TabIndex = 5;
+            lbl_studentSurname.Text = "Surname:";
             // 
-            // label1
+            // lbl_studentName
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(104, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(60, 22);
-            label1.TabIndex = 4;
-            label1.Text = "Name:";
+            lbl_studentName.AutoSize = true;
+            lbl_studentName.Font = new Font("Ubuntu Mono", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_studentName.Location = new Point(104, 111);
+            lbl_studentName.Name = "lbl_studentName";
+            lbl_studentName.Size = new Size(60, 22);
+            lbl_studentName.TabIndex = 4;
+            lbl_studentName.Text = "Name:";
             // 
             // txt_studentSurname
             // 
-            txt_studentSurname.Location = new Point(104, 156);
+            txt_studentSurname.Location = new Point(104, 230);
             txt_studentSurname.Name = "txt_studentSurname";
             txt_studentSurname.Size = new Size(250, 33);
             txt_studentSurname.TabIndex = 3;
             // 
             // txt_studentName
             // 
-            txt_studentName.Location = new Point(104, 68);
+            txt_studentName.Location = new Point(104, 142);
             txt_studentName.Name = "txt_studentName";
             txt_studentName.Size = new Size(250, 33);
             txt_studentName.TabIndex = 2;
@@ -188,7 +217,7 @@
             // 
             msk_studentClass.AsciiOnly = true;
             msk_studentClass.HidePromptOnLeave = true;
-            msk_studentClass.Location = new Point(104, 342);
+            msk_studentClass.Location = new Point(104, 416);
             msk_studentClass.Mask = ">0°LL";
             msk_studentClass.Name = "msk_studentClass";
             msk_studentClass.Size = new Size(250, 33);
@@ -199,7 +228,7 @@
             // 
             msk_studentCode.AsciiOnly = true;
             msk_studentCode.HidePromptOnLeave = true;
-            msk_studentCode.Location = new Point(104, 247);
+            msk_studentCode.Location = new Point(104, 321);
             msk_studentCode.Mask = ">LL-00000";
             msk_studentCode.Name = "msk_studentCode";
             msk_studentCode.Size = new Size(250, 33);
@@ -281,14 +310,16 @@
         private MaskedTextBox msk_studentCode;
         private Panel pnl_title;
         private Label lbl_title;
-        private Label label1;
+        private Label lbl_studentName;
         private TextBox txt_studentSurname;
         private TextBox txt_studentName;
         private MaskedTextBox msk_studentClass;
         private Button btn_func;
-        private Label label4;
-        private Label label3;
-        private Label label2;
+        private Label lbl_studentClass;
+        private Label lbl_studentCode;
+        private Label lbl_studentSurname;
         private DataGridView dgv_studentsViewer;
+        private Label lbl_studentPicker;
+        private ComboBox cmb_studentPicker;
     }
 }
