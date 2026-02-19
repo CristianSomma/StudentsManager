@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoubleLinkedList_Test
+namespace StudentsManager
 {
     public partial class DoublyLinkedList<T> 
         : IContainer<T>, IStaticSequence<T>, IDynamicSequence<T>, ISearchableSequence<T>, IEnumerable<T>

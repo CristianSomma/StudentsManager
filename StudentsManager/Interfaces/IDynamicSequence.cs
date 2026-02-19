@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoubleLinkedList_Test
+namespace StudentsManager
 {
     public interface IDynamicSequence<T>
     {
