@@ -80,7 +80,7 @@ namespace StudentsManager
         private void RefreshDataGrid()
         {
             dgv_studentsViewer.DataSource = _students.ToList();
-            dgv_studentsViewer.Columns["FullName"]?.Visible = false;
+            dgv_studentsViewer.Columns["FullName"].Visible = false;
         }
 
         private void SetFieldsEnabled(bool enabled)
@@ -216,7 +216,7 @@ namespace StudentsManager
             {
                 dgv_studentsViewer.Visible = true;
                 dgv_studentsViewer.DataSource = new Student[] { selected };
-                dgv_studentsViewer.Columns["FullName"]?.Visible = false;
+                dgv_studentsViewer.Columns["FullName"].Visible = false;
                 return;
             }
 

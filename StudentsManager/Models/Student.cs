@@ -38,7 +38,7 @@ namespace StudentsManager.Models
             get => _name;
             set
             {
-                ArgumentNullException.ThrowIfNullOrWhiteSpace(value);
+                ArgumentNullException.ThrowIfNullOrEmpty(value);
 
                 _name = value.ToUpper();
             }
@@ -49,7 +49,7 @@ namespace StudentsManager.Models
             get => _surname;
             set
             {
-                ArgumentNullException.ThrowIfNullOrWhiteSpace(value);
+                ArgumentNullException.ThrowIfNullOrEmpty(value);
 
                 _surname = value.ToUpper();
             }
@@ -60,7 +60,7 @@ namespace StudentsManager.Models
             get => _code;
             set
             {
-                ArgumentNullException.ThrowIfNullOrWhiteSpace(value);
+                ArgumentNullException.ThrowIfNullOrEmpty(value);
 
                 _code = value.ToUpper();
             }
@@ -71,7 +71,7 @@ namespace StudentsManager.Models
             get => _class;
             set
             {
-                ArgumentNullException.ThrowIfNullOrWhiteSpace(value);
+                ArgumentNullException.ThrowIfNullOrEmpty(value);
 
                 _class = value.ToUpper();
             }
