@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -273,6 +273,18 @@ namespace StudentsManager
 
         private Node GetNodeAt(int index)
         {
+            /*
+             * -> Se l'indice dato è fuori dai limiti, lancia un'eccezione
+             * 
+             * -> In base a se l'indice è sotto la metà o sopra:
+             *     - Se è sotto: Parte dalla testa e incrementa
+             *     - Se è sopra: Parte dalla coda e decrementa
+             *
+             * ! -> Il doppio è preferibile perché su una grande mole
+             *      di dati è più efficiente di un if che sceglie se andare al nodo
+             *      puntato da Next o da Prev
+            */
+
             if (index < 0 || index >= _length)
                 throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
 
@@ -306,6 +318,12 @@ namespace StudentsManager
 
         public int FindIndex(Predicate<T> predicate)
         {
+            /*
+             * -> Itera tutta la lista partendo da Head
+             *
+             * -> Quando il delegato con parametro l'elemento corrente
+             *    ritorna true, ritorna l'indice di quell'elemento.
+            */
             int index = 0;
             foreach (T currentItem in this)
             {
@@ -320,6 +338,8 @@ namespace StudentsManager
 
         public bool Contains(T item)
         {
+            // semplice wrapper di FindIndex, se l'indice
+            // non è -1 allora l'elemento è contenuto
             return (FindIndex(item) != -1);
         }
 
