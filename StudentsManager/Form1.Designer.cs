@@ -50,6 +50,8 @@
             pnl_title = new Panel();
             lbl_title = new Label();
             dgv_studentsViewer = new DataGridView();
+            btn_sortAscending = new Button();
+            btn_sortDescending = new Button();
             menuStrip1.SuspendLayout();
             pnl_studentsFields.SuspendLayout();
             pnl_title.SuspendLayout();
@@ -260,21 +262,46 @@
             // 
             dgv_studentsViewer.AllowUserToAddRows = false;
             dgv_studentsViewer.AllowUserToDeleteRows = false;
+            dgv_studentsViewer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_studentsViewer.BackgroundColor = SystemColors.Control;
             dgv_studentsViewer.BorderStyle = BorderStyle.None;
             dgv_studentsViewer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_studentsViewer.Location = new Point(0, 135);
+            dgv_studentsViewer.Location = new Point(0, 170);
             dgv_studentsViewer.Name = "dgv_studentsViewer";
             dgv_studentsViewer.ReadOnly = true;
             dgv_studentsViewer.RowHeadersWidth = 51;
-            dgv_studentsViewer.Size = new Size(781, 564);
+            dgv_studentsViewer.Size = new Size(781, 529);
             dgv_studentsViewer.TabIndex = 3;
+            // 
+            // btn_sortAscending
+            // 
+            btn_sortAscending.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_sortAscending.Location = new Point(12, 135);
+            btn_sortAscending.Name = "btn_sortAscending";
+            btn_sortAscending.Size = new Size(375, 29);
+            btn_sortAscending.TabIndex = 4;
+            btn_sortAscending.Text = "Sort in ascending order";
+            btn_sortAscending.UseVisualStyleBackColor = true;
+            btn_sortAscending.Click += btn_sortAscending_Click;
+            // 
+            // btn_sortDescending
+            // 
+            btn_sortDescending.Font = new Font("Ubuntu Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_sortDescending.Location = new Point(406, 135);
+            btn_sortDescending.Name = "btn_sortDescending";
+            btn_sortDescending.Size = new Size(375, 29);
+            btn_sortDescending.TabIndex = 5;
+            btn_sortDescending.Text = "Sort in descending order";
+            btn_sortDescending.UseVisualStyleBackColor = true;
+            btn_sortDescending.Click += btn_sortDescending_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(13F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1232, 703);
+            Controls.Add(btn_sortDescending);
+            Controls.Add(btn_sortAscending);
             Controls.Add(dgv_studentsViewer);
             Controls.Add(pnl_title);
             Controls.Add(pnl_studentsFields);
@@ -321,5 +348,7 @@
         private DataGridView dgv_studentsViewer;
         private Label lbl_studentPicker;
         private ComboBox cmb_studentPicker;
+        private Button btn_sortAscending;
+        private Button btn_sortDescending;
     }
 }

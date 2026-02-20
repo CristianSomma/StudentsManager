@@ -11,6 +11,5 @@ namespace StudentsManager
         int FindIndex(T item);
         int FindIndex(Predicate<T> predicate);
         bool Contains(T item);
-        T? Find(Predicate<T> predicate);
     }
 }

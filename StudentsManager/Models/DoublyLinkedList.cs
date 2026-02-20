@@ -1,3 +1,4 @@
+using StudentsManager.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -355,9 +356,70 @@ namespace StudentsManager
             return list;
         }
 
-        public T? Find(Predicate<T> predicate)
+        public void InsertionSort(Func<T, T, bool> shouldComeBefore)
         {
-            throw new NotImplementedException();
+            /*
+             * -> Se la lista è vuota o ha un solo elemento, è già ordinata.
+             *
+             * -> Per ogni nodo della lista originale, si salva il prossimo
+             *    prima di modificare i puntatori.
+             *
+             * -> Si cerca la posizione corretta in sortedList:
+             *      - Se è vuota o il corrente viene prima del nodo puntato da head:
+             *        diventa la il nuovo nodo puntato da head di sortedList.
+             *      - Altrimenti si scorre sortedList con un iteratore fino
+             *        alla posizione giusta e si inserisce il nodo aggiornando
+             *        i puntatori al nodo precedente e successivo.
+             *
+             * -> Alla fine si aggiornano Head e tail.
+             */
+
+            if (_head == null || _head.Next == null)
+                return;
+
+            Node? sortedList = null;
+            Node? current = _head;
+
+            while (current != null)
+            {
+                Node? next = current.Next;
+
+                if (sortedList == null || shouldComeBefore(current.Item, sortedList.Item))
+                {
+                    current.Next = sortedList;
+                    current.Prev = null;
+
+                    if (sortedList != null)
+                        sortedList.Prev = current;
+                    
+                    sortedList = current;
+                }
+                else
+                {
+                    Node iterator = sortedList;
+                    
+                    while (iterator.Next != null && 
+                        !shouldComeBefore(current.Item, iterator.Next.Item))
+                        iterator = iterator.Next;
+
+                    current.Next = iterator.Next;
+                    current.Prev = iterator;
+                    
+                    if (iterator.Next != null)
+                        iterator.Next.Prev = current;
+                    
+                    iterator.Next = current;
+                }
+
+                current = next;
+            }
+
+            _head = sortedList;
+
+            _tail = _head;
+            
+            while (_tail!.Next != null)
+                _tail = _tail.Next;
         }
     }
 }

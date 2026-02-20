@@ -21,6 +21,8 @@ namespace StudentsManager
 
             pnl_studentsFields.Visible = false;
             dgv_studentsViewer.Visible = false;
+            btn_sortAscending.Visible = false;
+            btn_sortDescending.Visible = false;
             lbl_studentPicker.Visible = false;
             cmb_studentPicker.Visible = false;
             btn_func.Visible = false;
@@ -65,6 +67,8 @@ namespace StudentsManager
 
                 case Status.ViewAll:
                     dgv_studentsViewer.Visible = true;
+                    btn_sortAscending.Visible = true;
+                    btn_sortDescending.Visible = true;
                     RefreshDataGrid();
                     break;
             }
@@ -105,10 +109,10 @@ namespace StudentsManager
 
         private void ClearFields()
         {
-            txt_studentName.Text = "";
-            txt_studentSurname.Text = "";
-            msk_studentCode.Text = "";
-            msk_studentClass.Text = "";
+            txt_studentName.Clear();
+            txt_studentSurname.Clear();
+            msk_studentCode.Clear();
+            msk_studentClass.Clear();
         }
 
         private void addStudentToolStripMenuItem_Click(object sender, EventArgs e) => SetStatus(Status.Add);
@@ -153,17 +157,17 @@ namespace StudentsManager
         private void ModifyClient()
         {
             Student? selected = cmb_studentPicker.SelectedItem as Student;
-            if (selected is null) 
-            { 
-                MessageBox.Show("No student selected.", "ERROR"); 
-                return; 
+            if (selected is null)
+            {
+                MessageBox.Show("No student selected.", "ERROR");
+                return;
             }
 
             int index = _students.FindIndex(selected);
-            if (index == -1) 
-            { 
-                MessageBox.Show("Student not found.", "ERROR"); 
-                return; 
+            if (index == -1)
+            {
+                MessageBox.Show("Student not found.", "ERROR");
+                return;
             }
 
             try
@@ -188,28 +192,28 @@ namespace StudentsManager
         private void DeleteClient()
         {
             Student? selected = cmb_studentPicker.SelectedItem as Student;
-            
-            if (selected is null) 
-            { 
-                MessageBox.Show("No student selected.", "ERROR"); 
-                return; 
+
+            if (selected is null)
+            {
+                MessageBox.Show("No student selected.", "ERROR");
+                return;
             }
 
             int index = _students.FindIndex(selected);
-            if (index == -1) 
-            { 
-                MessageBox.Show("Student not found.", "ERROR"); 
-                return; 
+            if (index == -1)
+            {
+                MessageBox.Show("Student not found.", "ERROR");
+                return;
             }
 
-            try 
-            { 
-                _students.DeleteAt(index); 
+            try
+            {
+                _students.DeleteAt(index);
             }
-            catch 
-            { 
-                MessageBox.Show("An error occurred during deletion.", "OPS!"); 
-                return; 
+            catch
+            {
+                MessageBox.Show("An error occurred during deletion.", "OPS!");
+                return;
             }
 
             SetStatus(Status.Idle);
@@ -232,6 +236,26 @@ namespace StudentsManager
             txt_studentSurname.Text = selected.Surname;
             msk_studentCode.Text = selected.Code;
             msk_studentClass.Text = selected.Class;
+        }
+
+        private void btn_sortAscending_Click(object sender, EventArgs e)
+        {
+            _students.InsertionSort((student1, student2) =>
+            {
+                return string.Compare(student1.Surname, student2.Surname) < 0;
+            });
+
+            RefreshDataGrid();
+        }
+
+        private void btn_sortDescending_Click(object sender, EventArgs e)
+        {
+            _students.InsertionSort((student1, student2) =>
+            {
+                return string.Compare(student1.Surname, student2.Surname) > 0;
+            });
+
+            RefreshDataGrid();
         }
     }
 
