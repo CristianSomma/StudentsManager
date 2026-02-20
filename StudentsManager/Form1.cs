@@ -153,10 +153,18 @@ namespace StudentsManager
         private void ModifyClient()
         {
             Student? selected = cmb_studentPicker.SelectedItem as Student;
-            if (selected is null) { MessageBox.Show("No student selected.", "ERROR"); return; }
+            if (selected is null) 
+            { 
+                MessageBox.Show("No student selected.", "ERROR"); 
+                return; 
+            }
 
             int index = _students.FindIndex(selected);
-            if (index == -1) { MessageBox.Show("Student not found.", "ERROR"); return; }
+            if (index == -1) 
+            { 
+                MessageBox.Show("Student not found.", "ERROR"); 
+                return; 
+            }
 
             try
             {
